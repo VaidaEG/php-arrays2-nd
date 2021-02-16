@@ -27,7 +27,7 @@ suma</p>
 <p>Sukurkite masyvą iš 10 elementų. Kiekvienas masyvo elementas turi būti masyvas su atsitiktiniu kiekiu nuo 2 iki 20 elementų. Elementų reikšmės atsitiktinai parinktos raidės iš intervalo A-Z. Išrūšiuokite antro lygio masyvus pagal abėcėlę (t.y. tuos kur su raidėm).</p>
 <?php
 $array2D = [];
-$letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+$letters = range('A', 'Z');
 $lettersLength = count($letters);
 for ($i = 0; $i < 10; $i++) {
     $innerArray = [];
@@ -35,6 +35,7 @@ for ($i = 0; $i < 10; $i++) {
         array_push($innerArray, $letters[rand(0, $lettersLength - 1)]);
     }
     array_push($array2D, $innerArray);
+    sort($array2D[$i]);
 }
 echo '<pre>';
 print_r($array2D);
