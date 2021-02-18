@@ -124,15 +124,29 @@ masyvas [user_id => xxx, place_in_row => xxx] user_id
 atsitiktinis unikalus skaičius nuo 1 iki 1000000, place_in_row atsitiktinis
 skaičius nuo 0 iki 100.</p>
 <?php
-$userArray = [];
+$usersArray = [];
 for ($i = 0; $i < 30; $i++) {
     $userID = rand(1, 1000000);
-    while (in_array($userID, array_column($userArray, 'user_id'))) {
+    while (in_array($userID, array_column($usersArray, 'user_id'))) {
         $userID = rand(1, 1000000);
     }
-    $userArray[] = ['user_id' => $userID, 'place_in_row' => rand(0, 100)];
+    $usersArray[] = ['user_id' => $userID, 'place_in_row' => rand(0, 100)];
 }
 echo '<pre>';
-print_r($userArray);
+print_r($usersArray);
 echo '</pre>';
 ?>
+<h1>-----------------------------------6.---------------------------------</h1>
+<p>Išrūšiuokite 5 uždavinio masyvą pagal user_id didėjančia tvarka. Ir paskui išrūšiuokite pagal place_in_row mažėjančia tvarka.</p>
+<?php
+array_multisort(array_column($usersArray, 'user_id'), SORT_ASC, $usersArray);
+echo '<pre>';
+print_r($usersArray);
+echo '</pre>';
+array_multisort(array_column($usersArray, 'place_in_row'), SORT_DESC, $usersArray);
+echo '<pre>';
+print_r($usersArray);
+echo '</pre>';
+?>
+<h1>-----------------------------------7.---------------------------------</h1>
+<p>Prie 6 uždavinio masyvo antro lygio masyvų pridėkite dar du elementus: name ir surname. Elementus užpildykite stringais iš atsitiktinai sugeneruotų lotyniškų raidžių, kurių ilgiai nuo 5 iki 15.</p>
