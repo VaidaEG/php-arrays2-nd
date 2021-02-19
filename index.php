@@ -150,3 +150,29 @@ echo '</pre>';
 ?>
 <h1>-----------------------------------7.---------------------------------</h1>
 <p>Prie 6 uždavinio masyvo antro lygio masyvų pridėkite dar du elementus: name ir surname. Elementus užpildykite stringais iš atsitiktinai sugeneruotų lotyniškų raidžių, kurių ilgiai nuo 5 iki 15.</p>
+<?php
+foreach ($usersArray as &$user) {
+        $user['name'] = '';
+        $user['surname'] = '';
+        $letters = range('a', 'z');
+        $lettersLength = count($letters);
+        $nameLength = rand(5, 15);
+        $surnameLength = rand(5, 15);
+        for ($i = 0; $i < $nameLength; $i++) {
+            if ($i === 0) {
+                $user['name'] .= strtoupper($letters[rand(0, $lettersLength - 1)]);
+            }
+            $user['name'] .= $letters[rand(0, $lettersLength - 1)];
+        }
+        for ($i = 0; $i < $surnameLength; $i++) {
+            if ($i === 0) {
+                $user['surname'] .= strtoupper($letters[rand(0, $lettersLength - 1)]);
+            }
+            $user['surname'] .= $letters[rand(0, $lettersLength - 1)];
+        }
+    }
+unset($user);
+echo '<pre>';
+print_r($usersArray);
+echo '</pre>';
+?>
