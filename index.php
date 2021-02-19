@@ -176,3 +176,92 @@ echo '<pre>';
 print_r($usersArray);
 echo '</pre>';
 ?>
+<h1>-----------------------------------8.---------------------------------</h1>
+<p>Sukurkite masyvą iš 10 elementų. Masyvo reikšmes užpildykite pagal taisyklę: generuokite skaičių nuo 0 iki 5. Ir sukurkite tokio ilgio masyvą. Jeigu reikšmė yra 0 masyvo nekurkite. Antro lygio masyvo reikšmes užpildykite atsitiktiniais skaičiais nuo 0 iki 10. Ten kur masyvo nekūrėte reikšmę nuo 0 iki 10 įrašykite tiesiogiai.</p>
+<?php
+$array = [];
+for ($i = 0; $i < 10; $i++) {
+    $random = rand(0, 5);
+    $innerArray = [];
+    if ($random === 0) {
+        $array[$i] =  rand(0, 10);
+    } else {
+        for ($j = 0; $j < $random; $j++) {
+            $innerArray[$j] = rand(0, 10);
+        }
+        $array[$i] =  $innerArray;
+    }
+}
+echo '<pre>';
+print_r($array);
+echo '</pre>';
+?>
+<h1>-----------------------------------9.---------------------------------</h1>
+<p>Paskaičiuokite 8 uždavinio masyvo visų reikšmių sumą ir išrūšiuokite masyvą taip, kad pirmiausiai eitų mažiausios masyvo reikšmės arba jeigu reikšmė yra masyvas, to masyvo reikšmių sumos.</p>
+<?php
+$sum = 0;
+foreach ($array as $value) {
+    if (is_array($value)) {
+        $sum += array_sum($value); 
+    } else {
+        $sum += $value; 
+    }
+}
+echo "Sum of all array values is: $sum.";
+?>
+<h1>-----------------------------------10.---------------------------------</h1>
+<p>Sukurkite masyvą iš 10 elementų. Jo reikšmės masyvai iš 10 elementų. Antro lygio masyvų reikšmės masyvai su dviem elementais value ir color. Reikšmė value vienas iš atsitiktinai parinktų simbolių: #%+*@裡, o reikšmė color atsitiktinai sugeneruota spalva formatu: #XXXXXX. Pasinaudoję masyvų atspausdinkite “kvadratą” kurį sudarytų masyvo reikšmės nuspalvintos spalva color.</p>
+<?php
+$array10 = [];
+$values = '#%+*@裡';
+$valuesLength = mb_strlen($values);
+for ($i = 0; $i < 10; $i++) {
+    $array10Inner = [];
+    for ($j = 0; $j < 10; $j++) {
+        $value = $values[rand(0, $valuesLength - 1)];
+        $color = '#' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+        $array10Inner[$j] = ['value' => $value, 'color' => $color];
+    }
+    $array10[$i] = $array10Inner;
+}
+echo '<pre>';
+print_r($array10);
+echo '</pre>';
+?>
+<h1>-----------------------------------11.---------------------------------</h1>
+<p>Duotas kodas, generuojantis masyvą.
+Reikia apskaičiuoti kiek buvo $sk1 ir $sk2 naudojantis matematika.
+NEGALIMA! naudoti jokių palyginimo operatorių (if-else, swich,
+()?:)
+NEGALIMA! naudoti jokių regex ir string funkcijų.
+GALIMA naudotis tik aritmetiniais veiksmais ir matematinėmis
+funkcijomis iš skyrelio: https://www.php.net/manual/en/ref.math.php
+Jeigu reikia, kodo patogumui galima panaudoti įvairias funkcijas, bet
+sprendimo pagrindas turi būti matematinis.
+Atsakymą reikia pateikti formatu:
+echo '<h3>Skaičius 789 yra pakartotas '.$sk1.' kartų, o skaičius 123
+- '.$sk2.' kartų.</h3>';
+Kur rudi skaičiai yra pakeisti skaičiais $a ir $b generuojamais kodo.</p>
+<?php
+do {
+    $a = rand(0, 1000);
+    $b = rand(0, 1000);
+   } while ($a == $b);
+   $long = rand(10,30);
+   $sk1 = $sk2 = 0;
+   echo '<h3>Skaičiai '.$a.' ir '.$b.'</h3>';
+   $c = [];
+   for ($i=0; $i<$long; $i++) {
+       // pick one or more random keys out of an array
+       // keys from arrays become values and values from array become keys
+    $c[] = array_rand(array_flip([$a, $b]));
+   }
+   echo '<h4>Masyvas:</h4>';
+   echo '<pre>';
+   print_r($c);
+   echo '</pre>';
+   // sprendimas
+   $arraySum = array_sum($c);
+   $iterations = count($c);
+
+?>
